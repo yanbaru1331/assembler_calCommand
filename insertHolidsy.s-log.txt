@@ -1,0 +1,105 @@
+insertHoliday:
+    @r0 文字列 r1 日 r2 月
+    cmp     r4, #1
+    pusheq  {lr}
+    bleq     Jan
+    popeq  {lr}
+    cmp     r4, #2
+    pusheq  {lr}
+    bleq     Feb
+    popeq  {lr}
+    cmp     r4, #3
+    pusheq  {lr}
+    bleq     Mar
+    popeq  {lr}
+    cmp     r4, #4
+    pusheq  {lr}
+    bleq     Apr
+    popeq  {lr}
+    cmp     r4, #5
+    pusheq  {lr}
+    bleq     May
+    popeq  {lr}
+    cmp     r4, #7
+    pusheq  {lr}
+    bleq     Jul
+    popeq  {lr}
+    cmp     r4, #8
+    pusheq  {lr}
+    bleq     Aug
+    popeq  {lr}
+    cmp     r4, #9
+    pusheq  {lr}
+    bleq     Sep
+    popeq  {lr}
+    cmp     r4, #10
+    pusheq  {lr}
+    bleq     Oct
+    popeq  {lr}
+    cmp     r4, #11
+    pusheq  {lr}    
+    bleq     Nov
+    popeq  {lr}
+    bx    lr 
+
+Jan:
+    cmp     r7, #1
+    pusheq  {lr}
+    bleq    Holiday
+    popeq   {lr}
+    beq     janend
+    cmp     r7, #9
+    pusheq  {lr}
+    bleq    Holiday
+    popeq   {lr}
+    beq     janend
+    pushne  {lr}
+    blne    weekday
+    popne   {lr}
+janend:
+    bx      lr
+
+Feb:
+    cmp     r7, #11
+    beq     Holiday
+    cmp     r7, #23
+    bx      lr
+
+Mar:
+    cmp     r7, #21
+    bx      lr
+
+Apr:
+    cmp     r7, #29
+    bx      lr
+
+May:
+    cmp     r7, #3
+
+    cmp     r7, #4
+
+    bx      lr
+
+Jul:
+    cmp     r7, #17
+    bx      lr
+   
+Aug:
+    cmp     r7, #11
+    bx      lr
+
+Sep:
+    cmp     r7, #18
+
+    cmp     r7, #23
+    bx      lr
+
+Oct:
+    cmp     r7, #9
+    bx      lr
+
+Nov:
+    cmp     r7, #3
+
+    cmp     r7, #23
+    bx      lr
